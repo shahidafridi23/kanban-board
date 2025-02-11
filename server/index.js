@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import connectDB from "./db/connect.js";
 import sectionRoutes from "./routes/sectionRoutes.js";
+import taskRoutes from "./routes/taskRoutes.js";
 import { createDefaultSections } from "./controllers/sectionControllers.js";
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(
 
 //routes
 app.use("/section", sectionRoutes);
+app.use("/task", taskRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "working" });
