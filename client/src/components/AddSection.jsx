@@ -3,8 +3,6 @@ import { Plus } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
@@ -12,10 +10,8 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 
@@ -77,19 +73,18 @@ const AddSection = ({ setSections }) => {
           type="button"
           className="self-start flex items-center text-sm text-gray-500 pt-0.5 pl-2"
         >
-          <Plus className="w-4 h-4" /> Add Task
+          <Plus className="w-4 h-4" /> Add Section
         </button>
       </DialogTrigger>
       <DialogContent>
         <DialogTitle>Create a new section</DialogTitle>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
             <FormField
               control={form.control}
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Title</FormLabel>
                   <FormControl>
                     <Input placeholder="Enter Section Title" {...field} />
                   </FormControl>
