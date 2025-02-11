@@ -1,8 +1,12 @@
 import express from "express";
-import { createSection } from "../controllers/sectionControllers.js";
+import {
+  createSection,
+  getSections,
+} from "../controllers/sectionControllers.js";
 
 const router = express.Router();
 
+router.get("/", getSections);
 router.post("/", createSection);
 
 export default router;
