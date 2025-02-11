@@ -1,8 +1,14 @@
 import Task from "../models/taskModel.js";
+import Section from "../models/sectionModel.js";
 
 export const createTask = async (req, res) => {
   try {
     const { title, description, dueDate, assignee, sectionId } = req.body;
+    const section = await Section.findById(sectionId);
+    if (!section) {
+      return res.status(404).json({ message: "Section not found" });
+    }
+
     const newTask = await Task.create({
       title,
       description,
@@ -10,6 +16,10 @@ export const createTask = async (req, res) => {
       assignee,
       section: sectionId,
     });
+
+    section.tasks.push(newTask._id);
+    await section.save();
+
     res
       .status(200)
       .json({ message: "New Task has been created!", task: newTask });

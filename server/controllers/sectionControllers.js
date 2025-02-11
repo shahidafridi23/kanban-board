@@ -2,8 +2,7 @@ import Section from "../models/sectionModel.js";
 
 export const getSections = async (req, res) => {
   try {
-    const sections = await Section.find();
-    console.log(sections);
+    const sections = await Section.find().populate("tasks");
     res.status(200).json({ message: "All the sections!", sections });
   } catch (error) {
     console.log(error);
