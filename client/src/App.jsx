@@ -1,7 +1,7 @@
-import React from "react";
+import Board from "./components/Board";
 
 const App = () => {
-  return <div>setup</div>;
+  return <Board />;
 };
 
 export default App;
