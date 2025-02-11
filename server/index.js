@@ -1,6 +1,7 @@
 import "dotenv/config";
 
 import express from "express";
+import cors from "cors";
 import connectDB from "./db/connect.js";
 import sectionRoutes from "./routes/sectionRoutes.js";
 
@@ -8,6 +9,11 @@ const app = express();
 
 //middlewares
 app.use(express.json());
+app.use(
+  cors({
+    origin: [process.env.CLIENT_URL],
+  })
+);
 
 //routes
 app.use("/section", sectionRoutes);
