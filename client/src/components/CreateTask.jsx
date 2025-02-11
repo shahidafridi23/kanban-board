@@ -53,7 +53,7 @@ const formSchema = z.object({
     }),
 });
 
-const CreateTask = ({ section, open, setOpen }) => {
+const CreateTask = ({ section, setSections, open, setOpen }) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -78,7 +78,14 @@ const CreateTask = ({ section, open, setOpen }) => {
         sectionId: section._id,
       });
       const { message, task } = response?.data;
-      console.log(message, task);
+
+      setSections((prevSections) =>
+        prevSections.map((section) =>
+          section._id === task.section
+            ? { ...section, tasks: [...section.tasks, task] }
+            : section
+        )
+      );
 
       toast({ title: message });
     } catch (error) {

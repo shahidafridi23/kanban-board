@@ -1,8 +1,9 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import CreateTask from "./CreateTask";
+import Task from "./Task";
 
-const Section = ({ section }) => {
+const Section = ({ section, setSections }) => {
   const [openCreateTask, setOpenCreateTask] = useState(false);
   return (
     <>
@@ -23,6 +24,10 @@ const Section = ({ section }) => {
           </button>
         </div>
         <div className="min-h-[80vh] bg-gray-100 rounded-md p-5">
+          {section?.tasks.map((task) => (
+            <Task key={task._id} task={task} />
+          ))}
+
           {!section?.tasks?.length && (
             <button
               onClick={() => setOpenCreateTask(true)}
@@ -36,6 +41,7 @@ const Section = ({ section }) => {
       </div>
       <CreateTask
         section={section}
+        setSections={setSections}
         open={openCreateTask}
         setOpen={setOpenCreateTask}
       />

@@ -38,7 +38,13 @@ const Board = () => {
   return (
     <div className="p-5 md:p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-5">
       {sections?.map((section) => {
-        return <Section key={section._id} section={section} />;
+        return (
+          <Section
+            key={section._id}
+            section={section}
+            setSections={setSections}
+          />
+        );
       })}
       <AddSection setSections={setSections} />
     </div>
