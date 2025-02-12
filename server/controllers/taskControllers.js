@@ -30,3 +30,29 @@ export const createTask = async (req, res) => {
       .json({ message: "Something went wrong!", error: error.message });
   }
 };
+
+export const updateTaskStatus = async (req, res) => {
+  try {
+    const { sectionId } = req.body;
+    const task = await Task.findById(req.params.id);
+
+    if (!task) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    await Section.findByIdAndUpdate(task.section, {
+      $pull: { tasks: task._id },
+    });
+
+    task.section = sectionId;
+    await task.save();
+
+    await Section.findByIdAndUpdate(sectionId, { $push: { tasks: task._id } });
+
+    res.json({ message: "Task status changed successfully!", task });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ message: "Something went wrong!", error: error.message });
+  }
+};
