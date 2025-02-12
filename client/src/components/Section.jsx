@@ -80,7 +80,7 @@ const Section = ({ section, setSections }) => {
         </div>
         <div className="min-h-[80vh] bg-gray-100 rounded-md p-5">
           {section?.tasks.map((task) => (
-            <Task key={task._id} task={task} />
+            <Task key={task._id} task={task} setSections={setSections} />
           ))}
 
           {!section?.tasks?.length && (

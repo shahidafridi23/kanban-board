@@ -1,9 +1,9 @@
-import { Ellipsis } from "lucide-react";
 import { format } from "date-fns";
 import { useDrag } from "react-dnd";
 import { useEffect } from "react";
+import DeleteTask from "./deleteTask";
 
-const Task = ({ task }) => {
+const Task = ({ task, setSections }) => {
   const formattedDate = format(new Date(task.dueDate), "dd MMM");
 
   const [{ isDragging }, drag, preview] = useDrag(() => ({
@@ -25,7 +25,8 @@ const Task = ({ task }) => {
         isDragging ? "opacity-0" : "opacity-1"
       }`}
     >
-      <p className="text-md mb-3">{task.description}</p>
+      <p className="text-md mb-3 pr-5">{task.description}</p>
+      <DeleteTask taskId={task._id} setSections={setSections} />
 
       <div className="stats flex items-center justify-between">
         <div className="flex gap-1 items-center">
