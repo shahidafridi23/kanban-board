@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { useDrag } from "react-dnd";
 import { useEffect } from "react";
-import DeleteTask from "./deleteTask";
+import DeleteTask from "./DeleteTask";
 
 const Task = ({ task, setSections }) => {
   const formattedDate = format(new Date(task.dueDate), "dd MMM");
